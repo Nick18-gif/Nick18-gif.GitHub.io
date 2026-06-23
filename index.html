@@ -3,10 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Il mio sito privato</title>
+    <title>Pagina web non disponibile</title>
+    <style>
+        /* Stile per farsi passare da pagina di errore del browser */
+        #error-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #f7f7f7; color: #333; font-family: sans-serif;
+            padding: 40px; box-sizing: border-box; z-index: 9999; display: block;
+        }
+        .error-container { max-width: 600px; margin: 30px auto; }
+        .error-title { font-size: 22px; color: #2b2b2b; margin-bottom: 15px; }
+        .error-code { font-size: 13px; color: #777; margin-top: 30px; }
+
+        /* Stile del tuo sito reale (Grafica Scura Personalizzata) */
+        body {
+            background-color: #121212; color: #ffffff;
+            font-family: 'Segoe UI', Roboto, sans-serif; margin: 0; padding: 20px;
+        }
+        .site-content { max-width: 800px; margin: 40px auto; text-align: center; }
+        .logo-placeholder {
+            width: 120px; height: 120px; background: #252525; border-radius: 50%;
+            margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;
+            border: 2px dashed #555; color: #aaa;
+        }
+        .btn {
+            display: inline-block; background-color: #0078d4; color: white;
+            padding: 10px 20px; border-radius: 5px; text-decoration: none; margin-top: 15px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Sito in costruzione</h1>
-    <p>Se vedi questa pagina, il sito è online!</p>
+
+    <!-- SCHERMATA DI FINTO ERRORE -->
+    <div id="error-screen">
+        <div class="error-container">
+            <div class="error-title">Impossibile raggiungere il sito</div>
+            <p>Connessione negata da <strong>nick18-gif.github.io</strong>.</p>
+            <p>Prova a controllare i dati o la connessione di rete.</p>
+            <div class="error-code">ERR_CONNECTION_REFUSED</div>
+        </div>
+    </div>
+
+    <!-- IL TUO SITO REALE (Nascosto finché non ti autentichi) -->
+    <div id="main-site" style="display: none;">
+        <div class="site-content">
+            <div class="logo-placeholder">Spazio Logo</div>
+            <h1>Benvenuto nel mio spazio privato! 🚀</h1>
+            <p>Questa pagina è visibile solo a me. Qui posso inserire i miei progetti, scritte e immagini.</p>
+            <a href="#" class="btn">Pulsante di Test</a>
+        </div>
+    </div>
+
+    <script>
+        // LA TUA PASSWORD DI ACCESSO (Cambia 'la-mia-chiave-segreta' con quello che vuoi)
+        const CHIAVE_SEGRETA = "la-mia-chiave-segreta";
+
+        // Chiede la chiave segreta tramite un prompt invisibile agli altri
+        // Nota: Per sbloccarlo al volo, basta aggiungere ?access=la-mia-chiave-segreta alla fine dell'URL del tuo sito!
+        const urlParams = new URLSearchParams(window.location.search);
+        const myParam = urlParams.get('access');
+
+        if (myParam === CHIAVE_SEGRETA) {
+            // Rimuove la finta pagina d'errore e mostra il sito
+            document.getElementById('error-screen').style.display = 'none';
+            document.getElementById('main-site').style.display = 'block';
+            document.title = "Il mio Sito Personalizzato";
+        }
+    </script>
 </body>
 </html>

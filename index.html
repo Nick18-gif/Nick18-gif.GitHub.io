@@ -5,61 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ERROR 404</title>
     <style>
-        /* FINTA PAGINA DI ERRORE (Sempre attiva per gli sconosciuti) */
+        /* Schermata di finto errore nera di base */
         #error-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: #121212; color: #ffffff; font-family: sans-serif;
-            padding: 40px; box-sizing: border-box; z-index: 9999; display: block;
-            text-align: center; padding-top: 100px;
+            z-index: 9999; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; text-align: center;
         }
         .error-title { font-size: 45px; font-weight: bold; margin-bottom: 20px; color: #aaa; }
         .error-text { font-size: 18px; margin-bottom: 10px; color: #888; }
-        .error-code { font-size: 13px; color: #555; margin-top: 20px; }
 
-        /* ==========================================
-           IL TUO SITO: MODALITÀ CHIARA (Di Base)
-           ========================================== */
+        /* SITO REALE: MODALITÀ CHIARA */
         body {
-            background-color: #ffffff; /* Sfondo Bianco */
-            color: #1a1a1a;            /* Testo Scuro */
+            background-color: #ffffff; color: #1a1a1a;
             font-family: 'Segoe UI', Roboto, sans-serif; margin: 0; padding: 20px;
-            transition: background-color 0.3s, color 0.3s;
         }
         .site-content { max-width: 800px; margin: 40px auto; text-align: center; }
         
         .btn {
             display: inline-block; background-color: #0078d4; color: white;
             padding: 12px 24px; border-radius: 5px; text-decoration: none; margin-top: 20px;
-            font-weight: bold; transition: background-color 0.2s;
-        }
-        .btn:hover {
-            background-color: #005a9e;
+            font-weight: bold;
         }
 
-        /* ==========================================
-           IL TUO SITO: MODALITÀ SCURA (Automatica)
-           ========================================== */
+        /* SITO REALE: MODALITÀ SCURA */
         @media (prefers-color-scheme: dark) {
-            body {
-                background-color: #121212; /* Sfondo Scuro */
-                color: #ffffff;            /* Testo Bianco */
-            }
-            .btn {
-                background-color: #0086f0;
-            }
-            .btn:hover {
-                background-color: #006cc1;
-            }
+            body { background-color: #121212; color: #ffffff; }
+            .btn { background-color: #0086f0; }
         }
     </style>
 </head>
 <body>
 
-    <div id="error-screen">
+    <div id="error-screen" onclick="chiediPassword()">
         <div class="error-title">ERROR 404</div>
         <div class="error-text">sito non raggiungibile.</div>
         <div class="error-text">prova a controllare la connessione.</div>
-        <div class="error-code">ERR_CONNECTION_REFUSED</div>
+        <div style="font-size: 13px; color: #444; margin-top: 20px;">ERR_CONNECTION_REFUSED</div>
     </div>
 
     <div id="main-site" style="display: none;">
@@ -72,17 +54,17 @@
     </div>
 
     <script>
-        // La tua password ufficiale con il punto esclamativo
-        const CHIAVE_SEGRETA = "paurama2023!"; 
-
-        const urlParams = new URLSearchParams(window.location.search);
-        const myParam = urlParams.get('access');
-
-        if (myParam === CHIAVE_SEGRETA) {
-            // Nasconde l'errore e mostra il vostro sito!
-            document.getElementById('error-screen').style.display = 'none';
-            document.getElementById('main-site').style.display = 'block';
-            document.title = "Nick18 e Franci21";
+        // Quando tocchi lo schermo, ti chiede la password!
+        function chiediPassword() {
+            const password = prompt("Inserisci la chiave segreta per sbloccare il sito:");
+            
+            if (password === "paurama2023!") {
+                document.getElementById('error-screen').style.display = 'none';
+                document.getElementById('main-site').style.display = 'block';
+                document.title = "Nick18 e Franci21";
+            } else if (password !== null) {
+                alert("Password errata!");
+            }
         }
     </script>
 </body>

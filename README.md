@@ -1,1 +1,1 @@
-# Nick18-gif.GitHub.io
+# Nick18-gif.github.io

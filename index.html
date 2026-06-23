@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagina web non disponibile</title>
+    <title>ERROR 404</title>
     <style>
-        /* FINTA PAGINA DI ERRORE (Rimane stile browser standard) */
+        /* FINTA PAGINA DI ERRORE (Sempre attiva per gli sconosciuti) */
         #error-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: #f7f7f7; color: #333; font-family: sans-serif;
+            background-color: #121212; color: #ffffff; font-family: sans-serif;
             padding: 40px; box-sizing: border-box; z-index: 9999; display: block;
+            text-align: center; padding-top: 100px;
         }
-        .error-container { max-width: 600px; margin: 30px auto; }
-        .error-title { font-size: 22px; color: #2b2b2b; margin-bottom: 15px; }
-        .error-code { font-size: 13px; color: #777; margin-top: 30px; }
+        .error-title { font-size: 45px; font-weight: bold; margin-bottom: 20px; color: #aaa; }
+        .error-text { font-size: 18px; margin-bottom: 10px; color: #888; }
+        .error-code { font-size: 13px; color: #555; margin-top: 20px; }
 
         /* ==========================================
            IL TUO SITO: MODALITÀ CHIARA (Di Base)
@@ -35,7 +36,8 @@
         
         .btn {
             display: inline-block; background-color: #0078d4; color: white;
-            padding: 10px 20px; border-radius: 5px; text-decoration: none; margin-top: 15px;
+            padding: 12px 24px; border-radius: 5px; text-decoration: none; margin-top: 20px;
+            font-weight: bold;
         }
 
         /* ==========================================
@@ -52,24 +54,20 @@
                 color: #aaa;
             }
             .btn {
-                background-color: #0086f0; /* Pulsante leggermente più luminoso su scuro */
+                background-color: #0086f0;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- SCHERMATA DI FINTO ERRORE -->
     <div id="error-screen">
-        <div class="error-container">
-            <div class="error-title">ERROR 404</div>
-            <p>sito non raggiungibile.</p>
-            <p>prova a controllare la connessione.</p>
-            <div class="error-code">ERR_CONNECTION_REFUSED</div>
-        </div>
+        <div class="error-title">ERROR 404</div>
+        <div class="error-text">sito non raggiungibile.</div>
+        <div class="error-text">prova a controllare la connessione.</div>
+        <div class="error-code">ERR_CONNECTION_REFUSED</div>
     </div>
 
-    <!-- IL TUO SITO REALE -->
     <div id="main-site" style="display: none;">
         <div class="site-content">
             <div class="logo-placeholder">Spazio Logo</div>
@@ -80,16 +78,17 @@
     </div>
 
     <script>
-        // Inserisci qui la tua password (es. quella del video o un'altra che preferisci)
+        // La tua password ufficiale con il punto esclamativo
         const CHIAVE_SEGRETA = "paurama2023!"; 
 
         const urlParams = new URLSearchParams(window.location.search);
         const myParam = urlParams.get('access');
 
         if (myParam === CHIAVE_SEGRETA) {
+            // Nasconde l'errore e mostra il vostro sito!
             document.getElementById('error-screen').style.display = 'none';
             document.getElementById('main-site').style.display = 'block';
-            document.title = "Il mio Sito Personalizzato";
+            document.title = "Nick18 e Franci21";
         }
     </script>
 </body>

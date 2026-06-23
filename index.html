@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagina web non disponibile</title>
     <style>
-        /* Stile per farsi passare da pagina di errore del browser */
+        /* FINTA PAGINA DI ERRORE (Rimane stile browser standard) */
         #error-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: #f7f7f7; color: #333; font-family: sans-serif;
@@ -15,20 +15,45 @@
         .error-title { font-size: 22px; color: #2b2b2b; margin-bottom: 15px; }
         .error-code { font-size: 13px; color: #777; margin-top: 30px; }
 
-        /* Stile del tuo sito reale (Grafica Scura Personalizzata) */
+        /* ==========================================
+           IL TUO SITO: MODALITÀ CHIARA (Di Base)
+           ========================================== */
         body {
-            background-color: #121212; color: #ffffff;
+            background-color: #ffffff; /* Sfondo Bianco */
+            color: #1a1a1a;            /* Testo Scuro */
             font-family: 'Segoe UI', Roboto, sans-serif; margin: 0; padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
         }
         .site-content { max-width: 800px; margin: 40px auto; text-align: center; }
+        
         .logo-placeholder {
-            width: 120px; height: 120px; background: #252525; border-radius: 50%;
+            width: 120px; height: 120px; 
+            background: #f0f0f0; border-radius: 50%;
             margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;
-            border: 2px dashed #555; color: #aaa;
+            border: 2px dashed #999; color: #666;
         }
+        
         .btn {
             display: inline-block; background-color: #0078d4; color: white;
             padding: 10px 20px; border-radius: 5px; text-decoration: none; margin-top: 15px;
+        }
+
+        /* ==========================================
+           IL TUO SITO: MODALITÀ SCURA (Automatica)
+           ========================================== */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #121212; /* Sfondo Scuro */
+                color: #ffffff;            /* Testo Bianco */
+            }
+            .logo-placeholder {
+                background: #252525;
+                border-color: #555;
+                color: #aaa;
+            }
+            .btn {
+                background-color: #0086f0; /* Pulsante leggermente più luminoso su scuro */
+            }
         }
     </style>
 </head>
@@ -37,34 +62,31 @@
     <!-- SCHERMATA DI FINTO ERRORE -->
     <div id="error-screen">
         <div class="error-container">
-            <div class="error-title">Impossibile raggiungere il sito</div>
-            <p>Connessione negata da <strong>nick18-gif.github.io</strong>.</p>
-            <p>Prova a controllare i dati o la connessione di rete.</p>
+            <div class="error-title">ERROR 404</div>
+            <p>sito non raggiungibile.</p>
+            <p>prova a cantrollare la connessione.</p>
             <div class="error-code">ERR_CONNECTION_REFUSED</div>
         </div>
     </div>
 
-    <!-- IL TUO SITO REALE (Nascosto finché non ti autentichi) -->
+    <!-- IL TUO SITO REALE -->
     <div id="main-site" style="display: none;">
         <div class="site-content">
             <div class="logo-placeholder">Spazio Logo</div>
-            <h1>Benvenuto nel mio spazio privato! 🚀</h1>
-            <p>Questa pagina è visibile solo a me. Qui posso inserire i miei progetti, scritte e immagini.</p>
-            <a href="#" class="btn">Pulsante di Test</a>
+            <h1>Nick18 e Franci21 🚀</h1>
+            <p>I migliori cugini d'Italia!</p>
+            <a href="#" class="btn">Sturno e Bologna</a>
         </div>
     </div>
 
     <script>
-        // LA TUA PASSWORD DI ACCESSO (Cambia 'la-mia-chiave-segreta' con quello che vuoi)
-        const CHIAVE_SEGRETA = "pauramai2023!";
+        // Inserisci qui la tua password (es. quella del video o un'altra che preferisci)
+        const CHIAVE_SEGRETA = "paurama2023!"; 
 
-        // Chiede la chiave segreta tramite un prompt invisibile agli altri
-        // Nota: Per sbloccarlo al volo, basta aggiungere ?access=la-mia-chiave-segreta alla fine dell'URL del tuo sito!
         const urlParams = new URLSearchParams(window.location.search);
         const myParam = urlParams.get('access');
 
         if (myParam === CHIAVE_SEGRETA) {
-            // Rimuove la finta pagina d'errore e mostra il sito
             document.getElementById('error-screen').style.display = 'none';
             document.getElementById('main-site').style.display = 'block';
             document.title = "Il mio Sito Personalizzato";
